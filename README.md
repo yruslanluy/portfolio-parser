@@ -4,9 +4,13 @@ by [t.me/cryptochy](https://t.me/cryptochy)
 
 Parsing any token transactions to dataframe
 
+## Requirements
+
 You need a numpy and beautifulsoup:
+
     pip install numpy
     pip install beautifulsoup4
+
 
 ## English instruction
 
