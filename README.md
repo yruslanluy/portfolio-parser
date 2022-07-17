@@ -4,6 +4,10 @@ by [t.me/cryptochy](https://t.me/cryptochy)
 
 Parsing any token transactions to dataframe
 
+You need a numpy and beautifulsoup:
+    pip install numpy
+    pip install beautifulsoup4
+
 ## English instruction
 
 1. Select token in your portfolio
