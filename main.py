@@ -10,15 +10,19 @@ from datetime import timedelta
 path = r"source.txt" # path to file
 decimals = 8 # decimals after point: 0.1234...
 
+dates_style = 'hJMpdk' # css class of dates, default is: hJMpdk, and can be iKUzJY
+amount_style = 'sc-1eb5slv-0 (iRvyUh|hUkJcr)' # css class of amount in format: 0 (1|2), default is: sc-1eb5slv-0 (iRvyUh|hUkJcr)
+e_const = 4 # parsing const, if you see an error, try to change it from 0 to 4. Default is: 4
 
-with open(path, 'r') as file:
+
+with open(path, 'r', encoding="utf8") as file:
     soup = BS(file, "html.parser")
     data = [[], []]
     soup = soup.find('div', class_='sc-16r8icm-0 kjciSH')
-    for line in soup.find_all('p', class_='sc-1eb5slv-0 hJMpdk')[4:]: # parsing dates
+    for line in soup.find_all('p', class_=('sc-1eb5slv-0 '+dates_style))[e_const:]: # parsing dates
         data[0].append(line.text.rsplit(',', 1)[0])
 
-    for amount in soup.find_all('p', class_=re.compile(r'sc-1eb5slv-0 (iRvyUh|hUkJcr)')): # parsing transactions amount
+    for amount in soup.find_all('p', class_=re.compile(amount_style)): # parsing transactions amount
         data[1].append(amount.text.split(' ')[0])
 
     arr = np.array(data)
